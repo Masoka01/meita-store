@@ -1,40 +1,42 @@
 :root {
   --primary: #2d3436;
   --accent: #6c5ce7;
-  --bg: #fdfdfd;
+  --bg: #f8f9fa;
   --card-bg: #ffffff;
   --text-main: #2d3436;
-  --text-muted: #636e72;
-  --border: #edf2f7;
+  --text-sub: #636e72;
+  --border: #e9ecef;
   --radius: 16px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
   --bg: #0f1115;
   --card-bg: #1a1d23;
   --text-main: #f5f6fa;
-  --text-muted: #a2a2a2;
+  --text-sub: #a4b0be;
   --border: #2d3139;
   --primary: #a29bfe;
 }
 
+/* GLOBAL RESET */
 body {
   background-color: var(--bg);
   color: var(--text-main);
   font-family: "Plus Jakarta Sans", sans-serif;
   line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* =========================
-   NAVBAR & CART BUTTON
-========================= */
+/* NAVBAR */
 .navbar {
-  background: rgba(var(--bg), 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(var(--bg), 0.85); /* Sedikit transparan */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 18px 0;
+  padding: 15px 0;
 }
 
 .brand {
@@ -42,71 +44,78 @@ body {
   font-weight: 800;
   text-decoration: none;
   color: var(--text-main);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
 }
-
 .brand span {
   color: var(--accent);
 }
 
 .nav-right {
   display: flex;
+  gap: 12px;
   align-items: center;
-  gap: 15px;
+}
+
+/* TOMBOL THEME & CART */
+.theme-btn,
+.cart-trigger {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-main);
+  border-radius: 50px; /* Bentuk bulat/kapsul */
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .theme-btn {
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-main);
   width: 42px;
   height: 42px;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition);
+}
+.theme-btn:hover {
+  background: var(--border);
 }
 
-/* CART PILL BUTTON */
 .cart-trigger {
-  background: var(--text-main);
-  color: var(--bg);
-  border: none;
-  padding: 6px 16px 6px 6px;
-  border-radius: 50px;
+  padding: 5px 15px 5px 5px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  transition: var(--transition);
+  gap: 10px;
+}
+.cart-trigger:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
 }
 
 .cart-icon-wrapper {
-  background: var(--accent);
   width: 34px;
   height: 34px;
+  background: var(--accent);
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  color: white;
 }
 
 .count-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -4px;
+  right: -4px;
   background: #ff4757;
+  color: white;
   font-size: 10px;
   font-weight: 800;
-  min-width: 18px;
+  width: 18px;
   height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--text-main);
+  border: 2px solid var(--card-bg);
 }
 
 .cart-total-nav {
@@ -114,86 +123,65 @@ body {
   font-size: 14px;
 }
 
-/* =========================
-   HERO SECTION
-========================= */
+/* HERO SECTION */
 .hero-section {
-  padding: 40px 0;
-  margin-top: 80px;
+  margin-top: 90px;
+  padding-bottom: 40px;
 }
-
 .hero-card {
-  background: var(--accent);
-  background-image: linear-gradient(135deg, var(--accent) 0%, #4834d4 100%);
-  border-radius: 30px;
-  padding: 80px 40px;
+  background: linear-gradient(135deg, var(--accent), #4834d4);
+  border-radius: 24px;
+  padding: 60px 40px;
   color: white;
+  text-align: left;
   position: relative;
   overflow: hidden;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 2;
-  max-width: 550px;
-}
-
-.sub-title {
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  display: block;
-  opacity: 0.8;
+  box-shadow: 0 20px 40px rgba(108, 92, 231, 0.2);
 }
 
 .hero-text h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  line-height: 1.2;
 }
 
-.hero-text p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
+.sub-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  opacity: 0.8;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .main-btn {
   background: white;
   color: var(--accent);
+  padding: 12px 28px;
+  border-radius: 12px;
   text-decoration: none;
-  padding: 14px 32px;
-  border-radius: 14px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  margin-top: 20px;
   transition: var(--transition);
 }
-
 .main-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  color: var(--accent);
 }
 
-/* =========================
-   PRODUCT CARDS
-========================= */
+/* PRODUCT CARD */
 .section-title {
-  margin-bottom: 40px;
   text-align: center;
+  margin-bottom: 40px;
 }
 .section-title h2 {
   font-weight: 800;
-  font-size: 2rem;
-}
-.section-title p {
-  color: var(--text-muted);
 }
 
 .card-product {
@@ -206,133 +194,181 @@ body {
   flex-direction: column;
   transition: var(--transition);
 }
-
 .card-product:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
   border-color: var(--accent);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .img-container {
-  height: 240px;
+  height: 220px;
   overflow: hidden;
-  position: relative;
+  cursor: pointer;
 }
-
 .product-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Mencegah gambar gepeng */
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: cover;
+  transition: transform 0.5s;
 }
-
 .card-product:hover .product-img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .card-body {
-  padding: 24px;
+  padding: 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 .card-body h5 {
   font-weight: 700;
-  font-size: 1.25rem;
-  margin-bottom: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
 }
-
 .price-tag {
-  font-weight: 800;
   color: var(--accent);
-  font-size: 1.2rem;
+  font-weight: 800;
+  font-size: 1.1rem;
   margin-top: auto;
-  display: block;
 }
 
 .add-to-cart-btn {
-  margin-top: 15px;
   width: 100%;
-  background: var(--border);
-  border: none;
+  margin-top: 15px;
   padding: 10px;
-  border-radius: 12px;
-  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg);
   color: var(--text-main);
+  font-weight: 600;
   transition: var(--transition);
 }
-
 .card-product:hover .add-to-cart-btn {
   background: var(--accent);
   color: white;
 }
 
-/* =========================
-   OFFCANVAS & FORM
-========================= */
+/* OFFCANVAS CART (Dark Mode Ready) */
 .offcanvas {
-  border-left: none !important;
-  width: 400px !important;
+  background-color: var(--card-bg);
+  color: var(--text-main);
 }
+.offcanvas-header {
+  border-bottom: 1px solid var(--border);
+}
+.btn-close {
+  filter: var(--filter-invert);
+} /* Auto invert di dark mode via JS logic nnti atau css var */
 
-@media (max-width: 576px) {
-  .offcanvas {
-    width: 100% !important;
-  }
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 .cart-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+/* NEW: Qty Capsule (1 Baris Rapi) */
+.qty-capsule {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 2px;
 }
 
 .qty-btn {
   width: 28px;
   height: 28px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: none;
+  background: transparent;
   color: var(--text-main);
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  transition: 0.2s;
+}
+.qty-btn:hover {
+  background: var(--border);
 }
 
-.total-price-text {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--accent);
+.qty-value {
+  padding: 0 10px;
+  font-weight: 700;
+  font-size: 14px;
+  min-width: 30px;
+  text-align: center;
 }
 
+/* FORM INPUTS (Dark Mode Fixed) */
 .custom-input {
-  border: 1px solid var(--border) !important;
   background-color: var(--bg) !important;
   color: var(--text-main) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 12px !important;
 }
+.custom-input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: none !important;
+}
 
+/* Label Floating Fix untuk Dark Mode */
+.form-floating > label {
+  color: var(--text-sub);
+}
+.form-floating > .form-control:focus ~ label {
+  color: var(--accent);
+}
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: var(--text-sub);
+}
+
+/* FOOTER ACTIONS */
+.checkout-footer {
+  padding-top: 20px;
+}
 .btn-wa-checkout {
+  width: 100%;
+  padding: 14px;
   background: #25d366;
   color: white;
-  width: 100%;
-  padding: 15px;
-  border-radius: 12px;
   border: none;
+  border-radius: 12px;
   font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   transition: var(--transition);
+}
+.btn-wa-checkout:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .btn-clear-all {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 13px;
   width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px dashed #ff6b6b;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.btn-clear-all:hover {
+  background: #ff6b6b;
+  color: white;
 }

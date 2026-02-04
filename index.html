@@ -57,9 +57,9 @@
               Layanan editing profesional dengan sentuhan estetik untuk segala
               kebutuhan visual Anda.
             </p>
-            <a href="#produk-section" class="main-btn"
-              >Eksplor Layanan <i class="bi bi-arrow-right"></i
-            ></a>
+            <a href="#produk-section" class="main-btn">
+              Eksplor Layanan <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
     </main>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas">
-      <div class="offcanvas-header border-bottom">
+      <div class="offcanvas-header">
         <h5 class="offcanvas-title fw-bold">Keranjang Belanja</h5>
         <button
           type="button"
@@ -85,7 +85,7 @@
       <div class="offcanvas-body d-flex flex-column">
         <div id="cartItems" class="flex-grow-1"></div>
 
-        <div class="checkout-footer pt-3">
+        <div class="checkout-footer">
           <div class="d-flex justify-content-between mb-3 align-items-center">
             <span class="text-muted">Estimasi Total</span>
             <span id="cartTotal" class="total-price-text">Rp 0</span>
@@ -103,8 +103,9 @@
               id="nameError"
               class="text-danger d-none"
               style="font-size: 11px"
-              >* Nama wajib diisi untuk pesanan</small
             >
+              * Nama wajib diisi
+            </small>
           </div>
 
           <div class="form-floating mb-3">
@@ -118,9 +119,10 @@
           </div>
 
           <button id="checkoutBtn" class="btn-wa-checkout">
-            Kirim via WhatsApp <i class="bi bi-whatsapp ms-2"></i>
+            Kirim via WhatsApp <i class="bi bi-whatsapp"></i>
           </button>
-          <button id="clearCart" class="btn-clear-all mt-2">Hapus Semua</button>
+
+          <button id="clearCart" class="btn-clear-all">Hapus Semua Item</button>
         </div>
       </div>
     </div>
