@@ -1,55 +1,48 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JasaEdit | Creative Studio</title>
-
-    <!-- Icon -->
     <link type="image/png" sizes="32x32" rel="icon" href="icon/icon.png" />
-
-    <!-- Preview Link -->
     <meta property="og:title" content="JasaEdit" />
     <meta property="og:url" content="https://meita-store.vercel.app/" />
     <meta property="og:image" content="https://i.imgur.com/YgpFqL7.jpeg" />
     <meta property="og:type" content="website" />
-
-    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <nav class="navbar fixed-top">
+    <!-- NAVBAR -->
+    <nav class="navbar fixed-top" id="mainNav">
       <div class="container">
         <a href="#" class="brand">Jasa<span>Edit</span></a>
-
         <div class="nav-right">
-          <button id="darkToggle" class="theme-btn">
-            <i class="bi bi-moon-stars"></i>
+          <button id="darkToggle" class="theme-btn" title="Toggle theme">
+            <i class="bi bi-sun-fill"></i>
           </button>
           <button
             class="cart-trigger"
             data-bs-toggle="offcanvas"
             data-bs-target="#cartCanvas"
+            aria-label="Open cart"
           >
             <div class="cart-icon-wrapper">
               <i class="bi bi-bag"></i>
-              <span id="cartCount" class="count-badge">0</span>
+              <span id="cartCount" class="count-badge" style="display: none"
+                >0</span
+              >
             </div>
             <span id="navCartPrice" class="cart-total-nav">Rp 0</span>
           </button>
@@ -57,101 +50,131 @@
       </div>
     </nav>
 
+    <!-- HERO -->
     <header class="hero-section">
-      <div class="container">
-        <div class="hero-card">
-          <div class="hero-text">
-            <span class="sub-title">Expert Photo Editor</span>
-            <h1>
-              Ubah Foto Biasa <br />
-              Jadi <em>Luar Biasa</em>
-            </h1>
-            <p>
-              Layanan editing profesional dengan sentuhan estetik untuk segala
-              kebutuhan visual Anda.
-            </p>
-            <a href="#produk-section" class="main-btn">
-              Eksplor Layanan <i class="bi bi-arrow-right"></i>
-            </a>
+      <div class="hero-bg-art">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="noise-overlay"></div>
+      </div>
+      <div class="container hero-container">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Expert Photo Editor</span>
+          <span class="eyebrow-dot"></span>
+        </div>
+        <h1 class="hero-heading">
+          Foto Biasa,<br />
+          <em>Hasil Luar Biasa.</em>
+        </h1>
+        <p class="hero-sub">
+          Editing profesional dengan sentuhan estetik<br />untuk setiap
+          kebutuhan visualmu.
+        </p>
+        <div class="hero-actions">
+          <a href="#produk-section" class="btn-primary-hero">
+            Lihat Layanan <i class="bi bi-arrow-down-right"></i>
+          </a>
+          <div class="hero-stat">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Foto diedit</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">⭐ 5.0</span>
+            <span class="stat-label">Rating klien</span>
           </div>
         </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>scroll</span>
+        <div class="scroll-line"></div>
       </div>
     </header>
 
-    <main class="container my-5" id="produk-section">
-      <div class="section-title">
-        <h2>Katalog Layanan</h2>
-        <p>Pilih paket yang sesuai dengan kebutuhan kreatifmu</p>
+    <!-- PRODUCTS -->
+    <main class="container section-products" id="produk-section">
+      <div class="section-header">
+        <p class="section-eyebrow">— Katalog Layanan</p>
+        <h2 class="section-title-text">Pilih Paketmu</h2>
       </div>
-      <div class="row g-4" id="productList"></div>
+      <div class="product-grid" id="productList"></div>
     </main>
 
+    <!-- CART OFFCANVAS -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title fw-bold">Keranjang Belanja</h5>
+        <div class="d-flex align-items-center gap-2">
+          <h5 class="offcanvas-title">Keranjang</h5>
+          <span id="cartBadgeCanvas" class="badge-count-canvas">0 item</span>
+        </div>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close-custom"
           data-bs-dismiss="offcanvas"
-        ></button>
+          aria-label="Close"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
       </div>
       <div class="offcanvas-body d-flex flex-column">
         <div id="cartItems" class="flex-grow-1"></div>
-
         <div class="checkout-footer">
-          <div class="d-flex justify-content-between mb-3 align-items-center">
-            <span class="text-muted">Estimasi Total</span>
-            <span id="cartTotal" class="total-price-text">Rp 0</span>
+          <div class="total-row">
+            <span>Total Estimasi</span>
+            <span id="cartTotal" class="total-amount">Rp 0</span>
           </div>
-
-          <div class="form-floating mb-2">
+          <div class="input-group-custom">
+            <label for="custName">Nama Lengkap</label>
             <input
               type="text"
               id="custName"
-              class="form-control custom-input"
-              placeholder="Nama"
+              class="custom-input"
+              placeholder="Masukkan nama kamu..."
             />
-            <label for="custName">Nama Lengkap</label>
-            <small
-              id="nameError"
-              class="text-danger d-none"
-              style="font-size: 11px"
+            <small id="nameError" class="err-msg d-none"
+              >* Nama wajib diisi</small
             >
-              * Nama wajib diisi
-            </small>
           </div>
-
-          <div class="form-floating mb-3">
+          <div class="input-group-custom">
+            <label for="custNote">Catatan Pesanan</label>
             <textarea
               id="custNote"
-              class="form-control custom-input"
-              placeholder="Catatan"
-              style="height: 100px"
+              class="custom-input"
+              placeholder="Detail / referensi tambahan..."
+              rows="3"
             ></textarea>
-            <label for="custNote">Catatan / Detail Pesanan</label>
           </div>
-
-          <button id="checkoutBtn" class="btn-wa-checkout">
-            Kirim via WhatsApp <i class="bi bi-whatsapp"></i>
+          <button id="checkoutBtn" class="btn-checkout">
+            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
           </button>
-
-          <button id="clearCart" class="btn-clear-all">Hapus Semua Item</button>
+          <button id="clearCart" class="btn-clear">
+            <i class="bi bi-trash3"></i> Hapus Semua
+          </button>
         </div>
       </div>
     </div>
 
+    <!-- IMAGE MODAL -->
     <div class="modal fade" id="imageModal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-transparent border-0">
-          <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" />
+          <img
+            id="modalImage"
+            src=""
+            class="img-fluid rounded-3 shadow-lg"
+            alt="Preview"
+          />
         </div>
       </div>
     </div>
 
-    <footer class="text-center py-5">
-      <p class="mb-0 text-muted">
-        © 2026 JasaEdit Studio. All Rights Reserved.
-      </p>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <p class="footer-brand">Jasa<span>Edit</span></p>
+        <p class="footer-copy">© 2026 JasaEdit Studio — All Rights Reserved.</p>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
